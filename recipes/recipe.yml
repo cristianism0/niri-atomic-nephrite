@@ -1,0 +1,81 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+name: niri-atomic-nephrite
+description: Fedora Atomic with Niri Window Manager and Noctalia Shell.
+base-image: quay.io/fedora/fedora-bootc
+image-version: 45
+
+modules:
+  - type: files
+    files:
+      - source: system
+        destination: /
+
+  - type: rpm-ostree
+    repos:
+      - https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-%OS_VERSION%.noarch.rpm
+      - https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-%OS_VERSION%.noarch.rpm
+    optfix:
+      - /opt
+    install:
+      - niri
+      - noctalia
+      - alacritty
+      - fuzzel
+      - xdg-desktop-portal-gnome
+      - xdg-desktop-portal-gtk
+      - mate-polkit
+      - greetd
+      - tuigreet
+      - wl-clipboard
+      - brightnessctl
+      - playerctl
+      - pipewire
+      - pipewire-pulseaudio
+      - wireplumber
+      - dejavu-sans-fonts
+      - mesa-dri-drivers
+      - mesa-vulkan-drivers
+      - libva-utils
+      - plymouth
+      - plymouth-theme-spinner
+      - xdg-user-dirs
+      - which
+      - zsh
+      - shim-x64
+      - grub2-efi-x64
+      - grub2-efi-x64-cdboot
+      - grub2-pc-modules
+      - dracut-live
+      - squashfs-tools
+
+  - type: default-flatpaks
+    configurations:
+      - notify: true
+        scope: system
+        install:
+          - org.mozilla.firefox
+          - org.gnome.Loupe
+      - scope: user
+
+  - type: systemd
+    system:
+      enabled:
+        - greetd.service
+
+  - type: kargs
+    kargs:
+      - quiet
+      - splash
+      - rd.udev.log_level=3
+
+  - type: initramfs
+
+  - type: script
+    snippets:
+      - "systemctl set-default graphical.target"
+      - "plymouth-set-default-theme spinner"
+      - "mkdir -p /var/roothome /boot/efi/EFI/fedora"
+      - "find /usr/lib/efi -path '*/EFI/fedora/*.efi' -exec cp {} /boot/efi/EFI/fedora/ \\;"
+
+  - type: signing
