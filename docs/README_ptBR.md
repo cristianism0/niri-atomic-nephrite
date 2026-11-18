@@ -6,8 +6,8 @@
 
 Base imutável. Atualizações atômicas. Rollback com um comando.
 
-[![build](https://github.com/cristianism0/niri-atomic-nephrite/actions/workflows/build.yml/badge.svg)](https://github.com/<usuario>/niri-atomic-nephrite/actions/workflows/build.yml)
-[![licença](https://img.shields.io/github/license/<usuario>/niri-atomic-nephrite)](../LICENSE)
+[![build](https://github.com/cristianism0/niri-atomic-nephrite/actions/workflows/build.yml/badge.svg)](https://github.com/cristianism0/niri-atomic-nephrite/actions/workflows/build.yml)
+[![licença](https://img.shields.io/github/license/cristianism0/niri-atomic-nephrite)](../LICENSE)
 
 [English](../README.md) · **Português (Brasil)**
 
@@ -50,7 +50,7 @@ Por ser baseada em imagem, o sistema inteiro é construído na CI, distribuído 
 **Não há ISO.** Instale primeiro qualquer edição do Fedora Atomic (Silverblue, Kinoite, ...) e depois faça o rebase para esta imagem:
 
 ```bash
-sudo rpm-ostree rebase ostree-unverified-registry:ghcr.io/<usuario>/niri-atomic-nephrite:latest
+sudo rpm-ostree rebase ostree-unverified-registry:ghcr.io/cristianism0/niri-atomic-nephrite:latest
 systemctl reboot
 ```
 
