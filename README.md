@@ -13,7 +13,7 @@ Immutable base. Atomic updates. One-command rollback.
 
 </div>
 
-> NOTE: The current build (first 45) does not work since niri cannot start a session due do systemd importing variables. Currently fixing it.
+> NOTE: The current build (not tested on real machines) does not work since niri cannot start the session.
 
 ## What is this?
 

@@ -13,6 +13,7 @@ Base imutável. Atualizações atômicas. Rollback com um comando.
 
 </div>
 
+> NOTA: o build atual está quebrado (não testado em máquinas reais) pois o niri não conseguiu iniciar uma sessão.
 
 ## O que é isto?
 
