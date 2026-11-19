@@ -22,7 +22,6 @@ modules:
       - NetworkManager
       - NetworkManager-wifi
       - NetworkManager-tui
-      - nmtui
       - iw
       - upower
       - power-profiles-daemon
