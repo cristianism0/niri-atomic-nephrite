@@ -3,7 +3,7 @@
 name: niri-atomic-nephrite
 description: Fedora Atomic with Niri Window Manager and Noctalia Shell.
 base-image: quay.io/fedora/fedora-bootc
-image-version: latest
+image-version: 45
 
 modules:
   - type: files
@@ -12,15 +12,20 @@ modules:
         destination: /
 
   - type: rpm-ostree
-    repos:
-      - https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-%OS_VERSION%.noarch.rpm
-      - https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-%OS_VERSION%.noarch.rpm
+    # RPM Fusion is not being used
+    # repos:
+    #   - https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-%OS_VERSION%.noarch.rpm
+    #   - https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-%OS_VERSION%.noarch.rpm
     optfix:
       - /opt
     install:
       - NetworkManager
       - NetworkManager-wifi
+      - NetworkManager-tui
+      - nmtui
       - iw
+      - upower
+      - power-profiles-daemon
       - linux-firmware
       - wpa_supplicant
       - bluez
@@ -57,9 +62,15 @@ modules:
       - qt5-qtwayland
       - gvfs
       - vim
-      - git 
+      - git
       - glibc-all-langpacks
       - gcc
+      - adwaita-icon-theme
+      - ffmpeg-free
+      - tmux
+      - xwayland-satellite
+      - ddcutil
+      - libheif
 
   - type: default-flatpaks
     configurations:
@@ -68,9 +79,6 @@ modules:
         install:
           - org.mozilla.firefox
           - org.gnome.Loupe
-      - scope: user
-
-
 
   - type: systemd
     system:
@@ -91,7 +99,8 @@ modules:
     snippets:
       - "systemctl set-default graphical.target"
       - "plymouth-set-default-theme spinner"
-      - "mkdir -p /var/roothome /boot/efi/EFI/fedora"
-      - "find /usr/lib/efi -path '*/EFI/fedora/*.efi' -exec cp {} /boot/efi/EFI/fedora/ \\;"
 
+  - type: containerfile
+    snippets:
+      - RUN bootc container lint
   - type: signing

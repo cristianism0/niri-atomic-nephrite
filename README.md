@@ -13,7 +13,6 @@ Immutable base. Atomic updates. One-command rollback.
 
 </div>
 
-> NOTE: The current build (not tested on real machines) does not work since niri cannot start the session.
 
 ## What is this?
 
