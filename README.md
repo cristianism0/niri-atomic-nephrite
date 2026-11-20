@@ -103,9 +103,6 @@ To publish your own fork:
 **Is there an ISO?**
 No. Installing from an existing Fedora Atomic system and rebasing is the supported path.
 
-**Is it ready for daily use?**
-It is my daily setup, but it is unstable by nature. Test in a VM before trusting it.
-
 **Can I change the package list?**
 Yes. Edit `recipes/recipe.yml`, push, and let CI build the new image.
 
