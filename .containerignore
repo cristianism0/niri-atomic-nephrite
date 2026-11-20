@@ -1,0 +1,13 @@
+# Keep build artifacts and secrets out of the Podman build context.
+.git
+.github
+output
+*.iso
+*.iso-CHECKSUM
+*.img
+*.qcow2
+*.raw
+cosign.key
+cosign.private
+.env
+*.key

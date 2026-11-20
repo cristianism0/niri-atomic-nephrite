@@ -1,13 +1,10 @@
 cosign.key
 cosign.private
-/Containerfile
 *.iso
 *.iso-CHECKSUM
-/.bluebuild-scripts_*
 .env
 *.key
 output/
 *.img
 *.qcow2
 *.raw
-
