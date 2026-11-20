@@ -103,8 +103,6 @@ Para publicar o seu próprio fork:
 **Existe uma ISO?**
 Não. Instalar a partir de um Fedora Atomic existente e fazer o rebase é o caminho suportado.
 
-**Está pronta para uso diário?**
-É o meu setup diário, embora atômica é instável por natureza. Teste em uma VM antes de confiar nela.
 
 **Posso alterar a lista de pacotes?**
 Sim. Edite `recipes/recipe.yml`, faça o push e deixe a CI construir a nova imagem.
