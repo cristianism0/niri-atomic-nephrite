@@ -1,10 +1,11 @@
-name: build
+name: build bootc image
 
 on:
   schedule:
-    - cron: "0 6 * * *" # 06:00 UTC 
+    - cron: "0 6 * * *" # 06:00 UTC
   push:
-    branches: [main]
+    branches:
+      - main
     paths-ignore:
       - "**.md"
   pull_request:
@@ -38,8 +39,11 @@ jobs:
 
       - name: Load build.env
         run: |
+          set -a
+          source ./build.env
+          set +a
           for key in FEDORA_VERSION BASE_IMAGE IMAGE_NAME IMAGE_TAG; do
-            value="$(grep -E "^${key}=" ./build.env | tail -n1 | cut -d= -f2- | tr -d '"'"'"'')"
+            value="${!key}"
             if [ -z "${value}" ]; then
               echo "::error::Variável ${key} ausente ou vazia em build.env"
               exit 1
